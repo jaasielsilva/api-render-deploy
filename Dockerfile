@@ -5,7 +5,7 @@ FROM openjdk:21-jdk-slim
 WORKDIR /app
 
 # Copia o arquivo JAR do projeto para o contêiner
-COPY target/nome-do-seu-arquivo.jar app.jar
+COPY target/app-0.0.1-SNAPSHOT.jar app.jar
 
 # Comando para rodar a aplicação
 ENTRYPOINT ["java", "-jar", "app.jar"]
