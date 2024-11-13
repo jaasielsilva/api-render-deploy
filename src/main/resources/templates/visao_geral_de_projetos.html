@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel do CEO - Portal Administrativo</title>
+    <title>Visão Geral de Projetos - Portal Administrativo</title>
     <style>
         /* Resetting default browser styles */
         * {
@@ -103,37 +103,25 @@
             margin-bottom: 20px;
         }
 
-        .content-box ul {
-            list-style: none;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
         }
 
-        .content-box ul li {
-            font-size: 18px;
-            margin-bottom: 10px;
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
         }
 
-        .link-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .link-list a {
-            background-color: #3498db;
+        th {
+            background-color: #2c3e50;
             color: white;
-            text-decoration: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-size: 18px;
-            width: 200px;
-            text-align: center;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .link-list a:hover {
-            background-color: #2980b9;
+        td {
+            background-color: #f9f9f9;
         }
 
         /* Footer */
@@ -171,14 +159,8 @@
                 width: 100%;
             }
 
-            .link-list {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .link-list a {
-                width: 100%;
-                margin-bottom: 10px;
+            .content-box {
+                margin-bottom: 20px;
             }
         }
     </style>
@@ -191,38 +173,62 @@
         <div class="sidebar">
             <h2>Painel do CEO</h2>
             <ul>
-                <li><a href="/">Dashboard</a></li>
-                <li><a href="/register">Usuários</a></li>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Usuários</a></li>
                 <li><a href="#">Configurações</a></li>
-                <li><a href="/relatorio-sistemas">Relatórios</a></li>
+                <li><a href="#">Relatórios</a></li>
+                <li><a href="#">Desempenho</a></li>
                 <li><a href="#">Gestão de Recursos Humanos</a></li>
                 <li><a href="#">Projetos</a></li>
-                <li><a href="/">Sair</a></li>
+                <li><a href="#">Sair</a></li>
             </ul>
         </div>
 
         <!-- Main content area -->
         <div class="main-content">
-            <h1>Bem-vindo ao Portal do CEO</h1>
-            <h2>Visão Geral de Administração</h2>
+            <h1>Visão Geral de Projetos</h1>
+            <p>Visão geral dos projetos em andamento e seu status.</p>
 
             <div class="content-box">
-                <h3>Estatísticas rápidas</h3>
-                <ul>
-                    <li><strong>Total de Pessoas cadastradas:</strong> <span th:text="${totalPessoas}"></span></li>
-                    <li><strong>Última atividade:</strong> <span th:text="${lastActivityMessage}"></span></li>
-                    <li><strong>Novos registros:</strong> <span th:text="${newUsers}">0</span></li>
-                </ul>
+                <h3>Resumo dos Projetos</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Projeto</th>
+                            <th>Status</th>
+                            <th>Responsável</th>
+                            <th>Data de Início</th>
+                            <th>Data de Conclusão</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Projeto B</td>
+                            <td>Concluído</td>
+                            <td>Maria</td>
+                            <td>01/06/2024</td>
+                            <td>15/10/2024</td>
+                        </tr>
+                        <tr>
+                            <td>Projeto C</td>
+                            <td>Em Andamento</td>
+                            <td>João</td>
+                            <td>15/07/2024</td>
+                            <td>20/12/2024</td>
+                        </tr>
+                        <tr>
+                            <td>Projeto D</td>
+                            <td>Planejado</td>
+                            <td>Ana</td>
+                            <td>01/11/2024</td>
+                            <td>30/03/2025</td>
+                        </tr>
+                        <!-- Adicionar mais projetos conforme necessário -->
+                    </tbody>
+                </table>
             </div>
 
-            <div class="link-list">
-                <a href="/relatorio_financeiro">Relatórios Financeiros</a>
-                <a href="/analise-de-projetos">Análise de Projetos</a>
-                <a href="/gestao-de-riscos">Gestão de Riscos</a>
-                <a href="/controle-de-estoque">Controle de Estoque</a>
-                <a href="/performance-da-empresa">Performance da Empresa</a>
-                <a href="/visao-geral-de-projetos">Visão Geral de Projetos</a>
-            </div>
+            <a href="/" class="footer-link">Voltar ao menu principal</a>
 
             <div class="footer">
                 <p>Portal Exclusivo para o CEO - <a href="/">Sair</a></p>
@@ -230,6 +236,7 @@
                 <p><a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
             </div>
         </div>
+
     </div>
 
 </body>

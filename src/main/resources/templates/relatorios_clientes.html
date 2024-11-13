@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel do CEO - Portal Administrativo</title>
+    <title>Relatórios de Clientes - Portal Administrativo</title>
     <style>
         /* Resetting default browser styles */
         * {
@@ -112,31 +112,6 @@
             margin-bottom: 10px;
         }
 
-        .link-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .link-list a {
-            background-color: #3498db;
-            color: white;
-            text-decoration: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-size: 18px;
-            width: 200px;
-            text-align: center;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .link-list a:hover {
-            background-color: #2980b9;
-        }
-
-        /* Footer */
         .footer {
             margin-top: 50px;
             font-size: 16px;
@@ -171,14 +146,8 @@
                 width: 100%;
             }
 
-            .link-list {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .link-list a {
-                width: 100%;
-                margin-bottom: 10px;
+            .content-box {
+                margin-bottom: 20px;
             }
         }
     </style>
@@ -192,9 +161,10 @@
             <h2>Painel do CEO</h2>
             <ul>
                 <li><a href="/">Dashboard</a></li>
-                <li><a href="/register">Usuários</a></li>
+                <li><a href="#">Usuários</a></li>
                 <li><a href="#">Configurações</a></li>
                 <li><a href="/relatorio-sistemas">Relatórios</a></li>
+                <li><a href="/relatorios-desempenho">Desempenho</a></li>
                 <li><a href="#">Gestão de Recursos Humanos</a></li>
                 <li><a href="#">Projetos</a></li>
                 <li><a href="/">Sair</a></li>
@@ -203,25 +173,32 @@
 
         <!-- Main content area -->
         <div class="main-content">
-            <h1>Bem-vindo ao Portal do CEO</h1>
-            <h2>Visão Geral de Administração</h2>
+            <h1>Relatórios de Clientes</h1>
+            <h2>Visão Geral dos Clientes</h2>
 
             <div class="content-box">
-                <h3>Estatísticas rápidas</h3>
+                <h3>Dados dos Clientes</h3>
                 <ul>
-                    <li><strong>Total de Pessoas cadastradas:</strong> <span th:text="${totalPessoas}"></span></li>
-                    <li><strong>Última atividade:</strong> <span th:text="${lastActivityMessage}"></span></li>
-                    <li><strong>Novos registros:</strong> <span th:text="${newUsers}">0</span></li>
+                    <li><strong>Total de Clientes:</strong> <span>1.500</span></li>
+                    <li><strong>Clientes Ativos:</strong> <span>1.200</span></li>
+                    <li><strong>Clientes Inativos:</strong> <span>300</span></li>
+                    <li><strong>Média de Compras por Cliente:</strong> <span>5 compras</span></li>
+                    <li><strong>Clientes VIP:</strong> <span>200</span></li>
                 </ul>
             </div>
 
-            <div class="link-list">
-                <a href="/relatorio_financeiro">Relatórios Financeiros</a>
-                <a href="/analise-de-projetos">Análise de Projetos</a>
-                <a href="/gestao-de-riscos">Gestão de Riscos</a>
-                <a href="/controle-de-estoque">Controle de Estoque</a>
-                <a href="/performance-da-empresa">Performance da Empresa</a>
-                <a href="/visao-geral-de-projetos">Visão Geral de Projetos</a>
+            <div class="content-box">
+                <h3>Segmentação de Clientes</h3>
+                <ul>
+                    <li><strong>Clientes Jovens:</strong> <span>35%</span></li>
+                    <li><strong>Clientes Adultos:</strong> <span>50%</span></li>
+                    <li><strong>Clientes Sêniores:</strong> <span>15%</span></li>
+                </ul>
+            </div>
+
+            <div class="content-box">
+                <h3>Gráficos de Clientes</h3>
+                <p>Incluir aqui gráficos de segmentação de clientes, distribuição de idade, e análise do comportamento de compra dos clientes.</p>
             </div>
 
             <div class="footer">

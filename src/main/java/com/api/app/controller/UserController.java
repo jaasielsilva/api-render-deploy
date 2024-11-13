@@ -2,7 +2,9 @@ package com.api.app.controller;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map; // Importando a classe Map
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,48 +41,35 @@ public class UserController {
         return userService.saveUser(user); // Chama o serviço para salvar o usuário
     }
 
-    // Mapeia a URL '/home' para a página principal do painel
-    @GetMapping("/home")
-    public String home(Model model) {
-        long totalPessoas = userService.getTotalPessoasCadastradas(); // Total de pessoas cadastradas
-        LocalDateTime lastActivity = userService.getLastActivity(); // Última atividade
-        LocalDateTime oneWeekAgo = LocalDateTime.now().minusWeeks(1); // Data da última semana
-        List<User> newUsersList = userService.getNewUsersSince(oneWeekAgo); // Novos usuários desde a última semana
+    private Map<String, Object> getDashboardInfo() {
+        Map<String, Object> dashboardInfo = new HashMap<>();
+        long totalPessoas = userService.getTotalPessoasCadastradas();
+        LocalDateTime lastActivity = userService.getLastActivity();
+        LocalDateTime oneWeekAgo = LocalDateTime.now().minusWeeks(1);
+        List<User> newUsersList = userService.getNewUsersSince(oneWeekAgo);
 
-        int newUsers = newUsersList.size(); // Conta o número de novos usuários
+        int newUsers = newUsersList.size();
         String lastActivityMessage = "Sem atividade recente";
         if (lastActivity != null) {
             long minutesAgo = ChronoUnit.MINUTES.between(lastActivity, LocalDateTime.now());
-            lastActivityMessage =  minutesAgo + " minutos atrás";
+            lastActivityMessage = minutesAgo + " minutos atrás";
         }
 
-        // Passa as informações para o modelo
-        model.addAttribute("totalPessoas", totalPessoas);
-        model.addAttribute("lastActivityMessage", lastActivityMessage);
-        model.addAttribute("newUsers", newUsers); // Adiciona o número de novos usuários no modelo
+        dashboardInfo.put("totalPessoas", totalPessoas);
+        dashboardInfo.put("lastActivityMessage", lastActivityMessage);
+        dashboardInfo.put("newUsers", newUsers);
+        return dashboardInfo;
+    }
 
-        return "home"; // Retorna a página home.html
+    @GetMapping("/home")
+    public String home(Model model) {
+        model.addAllAttributes(getDashboardInfo());
+        return "home";
     }
 
     @GetMapping("/relatorios")
     public String showRelatorios(Model model) {
-        long totalPessoas = userService.getTotalPessoasCadastradas(); // Total de pessoas cadastradas
-        LocalDateTime lastActivity = userService.getLastActivity(); // Última atividade
-        LocalDateTime oneWeekAgo = LocalDateTime.now().minusWeeks(1); // Data da última semana
-        List<User> newUsersList = userService.getNewUsersSince(oneWeekAgo); // Novos usuários desde a última semana
-
-        int newUsers = newUsersList.size(); // Conta o número de novos usuários
-        String lastActivityMessage = "Sem atividade recente";
-        if (lastActivity != null) {
-            long minutesAgo = ChronoUnit.MINUTES.between(lastActivity, LocalDateTime.now());
-            lastActivityMessage =  minutesAgo + " minutos atrás";
-        }
-
-        // Passa as informações para o modelo
-        model.addAttribute("totalPessoas", totalPessoas);
-        model.addAttribute("lastActivityMessage", lastActivityMessage);
-        model.addAttribute("newUsers", newUsers); // Adiciona o número de novos usuários no modelo
-
-        return "relatorios"; // Retorna a página relatorios.html
+        model.addAllAttributes(getDashboardInfo());
+        return "relatorios";
     }
 }

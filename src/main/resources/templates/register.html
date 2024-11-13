@@ -4,7 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Usuário</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* Resetting default browser styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Container for the login box */
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Title styling */
+        .login-box h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        /* Textbox styling */
+        .textbox {
+            margin-bottom: 20px;
+        }
+
+        .textbox label {
+            display: block;
+            font-size: 16px;
+            color: #7f8c8d;
+            margin-bottom: 8px;
+        }
+
+        .textbox input,
+        .textbox select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .textbox input:focus,
+        .textbox select:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        /* Button container and button styling */
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Success message styling */
+        p {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #2ecc71;
+        }
+
+        /* Error message styling (if needed) */
+        .error-message {
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <div class="login-container">
@@ -33,7 +131,7 @@
             </form>
         </div>
     </div>
-    
+
     <!-- Mensagem de sucesso (aparece após um cadastro bem-sucedido) -->
     <div>
         <p th:if="${param.success}" style="color: green;">Cadastro realizado com sucesso!</p>

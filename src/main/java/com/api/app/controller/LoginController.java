@@ -32,7 +32,7 @@ public class LoginController {
 
             // Verifica se o papel do usuário é ADMIN
             if (user != null && "ADMIN".equals(user.getRole())) {
-                return "redirect:/home"; // Se o usuário for ADMIN, redireciona para home
+                return "redirect:/relatorios"; // Se o usuário for ADMIN, redireciona para home
             } else {
                 return "redirect:/menuiniciante"; // Se não for ADMIN, redireciona para o menuiniciante
             }

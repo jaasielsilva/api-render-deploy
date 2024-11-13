@@ -82,12 +82,12 @@
 <body>
     <div class="tasks-box">
         <h1>Lista de Tarefas</h1>
-    <ul>
-        <li th:each="tarefa : ${tarefas}" th:text="${tarefa}"></li>
-    </ul>
-    <p>Total de pessoas cadastradas: <span th:text="${totalPessoas}"></span></p>
-    <p><span th:text="${lastActivityMessage}"></span></p>
-    <p>Número de novos registros: <span th:text="${newUsers}"></span></p>
+        <ul>
+            <li th:each="tarefa : ${tarefas}" th:text="${tarefa}"></li>
+        </ul>
+        <p>Total de pessoas cadastradas: <span th:text="${totalPessoas}"></span></p>
+        <p><span th:text="${lastActivityMessage}"></span></p>
+        <p>Número de novos registros: <span th:text="${newUsers}"></span></p>
         <a href="/menuiniciante" class="back-to-menu">Voltar ao Menu</a>
     </div>
 </body>
