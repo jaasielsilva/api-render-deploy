@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel do CEO - Portal Administrativo</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
+    <title>Produtos - Sistema</title>
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Resetting default browser styles */
+        /* Resetando os estilos padrões do navegador */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Body styling */
+        /* Estilo do body */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f9;
@@ -26,19 +26,20 @@
             margin: 0;
         }
 
-        /* Main container for the page */
+        /* Contêiner principal */
         .admin-container {
             width: 100%;
             max-width: 1200px;
             display: flex;
-            flex-direction: row;
+            flex-direction: row; /* Alterado para 'row' para ter sidebar e conteúdo principal lado a lado */
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             margin: 20px;
+            padding: 20px;
         }
 
-        /* Sidebar for navigation */
+        /* Sidebar para navegação */
         .sidebar {
             background-color: #2c3e50;
             color: white;
@@ -78,72 +79,53 @@
             background-color: #34495e;
         }
 
-        /* Main content area */
-        .main-content {
-            padding: 40px;
-            width: 100%;
-            max-width: 850px;
-        }
-
-        .main-content h1 {
+        /* Estilo do título */
+        h1 {
+            text-align: center;
             font-size: 36px;
             color: #2c3e50;
             margin-bottom: 20px;
         }
 
-        .content-box {
-            background-color: #ecf0f1;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
-        }
-
-        .content-box h3 {
-            font-size: 24px;
-            color: #34495e;
-            margin-bottom: 20px;
-        }
-
-        .content-box ul {
-            list-style: none;
-        }
-
-        .content-box ul li {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .link-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+        /* Estilo do menu */
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
+            justify-items: center;
+            margin-top: 30px;
         }
 
-        .link-list a {
+        .menu a {
+            text-decoration: none;
+            color: #333;
+            font-size: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            background-color: #ecf0f1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            justify-content: center;
+        }
+
+        .menu a i {
+            font-size: 50px;
+            margin-right: 10px;
+        }
+
+        .menu a:hover {
             background-color: #3498db;
             color: white;
-            text-decoration: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-size: 18px;
-            width: 200px;
-            text-align: center;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .link-list a:hover {
-            background-color: #2980b9;
         }
 
         /* Footer */
         .footer {
+            text-align: center;
             margin-top: 50px;
             font-size: 16px;
             color: #7f8c8d;
-            text-align: center;
         }
 
         .footer a {
@@ -155,8 +137,11 @@
             text-decoration: underline;
         }
 
-        /* Responsive design */
+        /* Responsividade */
         @media (max-width: 768px) {
+            .menu {
+                grid-template-columns: 1fr;
+            }
             .admin-container {
                 flex-direction: column;
                 align-items: center;
@@ -168,19 +153,8 @@
                 padding: 15px;
             }
 
-            .main-content {
-                padding: 20px;
-                width: 100%;
-            }
-
-            .link-list {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .link-list a {
-                width: 100%;
-                margin-bottom: 10px;
+            .footer {
+                margin-top: 30px;
             }
         }
     </style>
@@ -189,7 +163,7 @@
 
     <div class="admin-container">
 
-        <!-- Sidebar for navigation -->
+        <!-- Sidebar para navegação -->
         <div class="sidebar">
             <h2>Painel do CEO</h2>
             <ul>
@@ -204,35 +178,23 @@
             </ul>
         </div>
 
-        <!-- Main content area -->
-        <div class="main-content">
-            <h1>Bem-vindo ao Portal do CEO</h1>
-            <h2>Visão Geral de Administração</h2>
-
-            <div class="content-box">
-                <h3>Estatísticas rápidas</h3>
-                <ul>
-                    <li><strong>Total de Pessoas cadastradas:</strong> <span th:text="${totalPessoas}"></span></li>
-                    <li><strong>Última atividade:</strong> <span th:text="${lastActivityMessage}"></span></li>
-                    <li><strong>Novos registros:</strong> <span th:text="${newUsers}">0</span></li>
-                </ul>
+        <!-- Conteúdo principal -->
+        <div class="main-content" style="padding: 20px; flex-grow: 1;">
+            <h1>Opções de Produtos</h1>
+            <div class="menu">
+                <a href="/produtos/cadastro-produtos"><i class="fas fa-plus-circle"></i> Cadastro de Produto</a>
+                <a href="/lista-produtos"><i class="fas fa-list-ul"></i> Lista de Produtos</a>
+                <a href="/estoque-produtos"><i class="fas fa-warehouse"></i> Estoque de Produtos</a>
+                <a href="/relatorio-produtos"><i class="fas fa-file-alt"></i> Relatórios de Produtos</a>
+                <a href="/atualizacao-produtos"><i class="fas fa-edit"></i> Atualização de Dados</a>
+                <a href="/produtos/remocao-produtos"><i class="fas fa-trash-alt"></i> Remoção de Produtos</a>
             </div>
-
-            <div class="link-list">
-                <a href="/relatorio_financeiro">Relatórios Financeiros</a>
-                <a href="/analise-de-projetos">Análise de Projetos</a>
-                <a href="/gestao-de-riscos">Gestão de Riscos</a>
-                <a href="/controle-de-estoque">Controle de Estoque</a>
-                <a href="/performance-da-empresa">Performance da Empresa</a>
-                <a href="/visao-geral-de-projetos">Visão Geral de Projetos</a>
-            </div>
-
             <div class="footer">
-                <p>Portal Exclusivo para o CEO - <a href="/">Sair</a></p>
-                <p>&copy; 2024 Sistema de Relatórios. Todos os direitos reservados.</p>
+                <p>&copy; 2024 Sistema de Produtos. Todos os direitos reservados.</p>
                 <p><a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
             </div>
         </div>
+
     </div>
 
 </body>

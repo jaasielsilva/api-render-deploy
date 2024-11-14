@@ -167,60 +167,66 @@
 </head>
 <body>
 
-    <h1>Cadastro de Produtos</h1>
+    <body>
 
-    <div class="container">
-        <!-- Formulário de Cadastro -->
-        <div class="form-section">
-            <h2>Adicionar Produto</h2>
-            <form id="produtoForm" action="/produtos/salvar" method="POST">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required>
-            
-                <label for="descricao">Descrição:</label>
-                <input type="text" id="descricao" name="descricao" required>
-            
-                <label for="preco">Preço:</label>
-                <input type="number" id="preco" name="preco" step="0.01" required>
-            
-                <button class="add-product-button" type="submit">Adicionar Produto</button>
-            </form>
-        </div>
-
-        <!-- Tabela de Produtos -->
-        <div class="table-section">
-            <h2>Produtos Cadastrados</h2>
-            <table id="produtosTable">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Descrição</th>
-                        <th>Preço</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Exemplo de dados, o Thymeleaf aqui deve ser substituído com a renderização de dados -->
-                    <tr th:each="produto : ${produtos}">
-                        <td th:text="${produto.id}"></td>
-                        <td th:text="${produto.nome}"></td>
-                        <td th:text="${produto.descricao}"></td>
-                        <td th:text="${produto.preco}"></td>
-                        <td class="actions">
-                            <a th:href="@{/produtos/editar/{id}(id=${produto.id})}">Editar</a> |
-                            <a th:href="@{/produtos/deletar/{id}(id=${produto.id})}">Deletar</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Botão Voltar -->
-        <div class="back-button-container">
-            <button onclick="window.location.href='/relatorios';" class="back-button">Voltar ao Menu Inicial</button>
-        </div>
-    </div>
+        <h1>Cadastro de Produtos</h1>
+    
+        <div class="container">
+            <!-- Exibir mensagem de sucesso -->
+            <div th:if="${sucesso}" class="alert alert-success">
+                <p th:text="${sucesso}"></p>
+            </div>
+    
+            <!-- Formulário de Cadastro -->
+            <div class="form-section">
+                <h2>Adicionar Produto</h2>
+                <form id="produtoForm" action="/produtos/salvar" method="POST">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+                
+                    <label for="descricao">Descrição:</label>
+                    <input type="text" id="descricao" name="descricao" required>
+                
+                    <label for="preco">Preço:</label>
+                    <input type="number" id="preco" name="preco" step="0.01" required>
+                
+                    <button class="add-product-button" type="submit">Adicionar Produto</button>
+                </form>
+            </div>
+    
+            <!-- Tabela de Produtos -->
+            <div class="table-section">
+                <h2>Produtos Cadastrados</h2>
+                <table id="produtosTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Descrição</th>
+                            <th>Preço</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="produto : ${produtos}">
+                            <td th:text="${produto.id}"></td>
+                            <td th:text="${produto.nome}"></td>
+                            <td th:text="${produto.descricao}"></td>
+                            <td th:text="${produto.preco}"></td>
+                            <td class="actions">
+                                <a th:href="@{/produtos/editar/{id}(id=${produto.id})}">Editar</a> |
+                                <a th:href="@{/produtos/deletar/{id}(id=${produto.id})}">Deletar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+            <!-- Botão Voltar -->
+            <div class="back-button-container">
+                <button onclick="window.location.href='/relatorios';" class="back-button">Voltar ao Menu Inicial</button>
+            </div>
+        </div>    
 
 </body>
 </html>
