@@ -23,9 +23,14 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    // Mapeia a URL '/register' para a página de cadastro de usuários
-    @GetMapping("/register")
+    // Mapeia a URL '/Usuario' para a página de cadastro de usuários
+    @GetMapping("/Usuarios")
     public String showRegistrationForm() {
+        return "Usuarios"; // Nome da view, que será o arquivo register.html
+    }
+    
+    @GetMapping("/register")
+    public String showRegistrationFor() {
         return "register"; // Nome da view, que será o arquivo register.html
     }
 

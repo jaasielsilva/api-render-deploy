@@ -13,15 +13,6 @@ public class FuncionarioController {
     public String menuFuncionario() {
         return "menufuncionario";  // Exibe o menu
     }
-
-    // Visualizar tarefas
-    @GetMapping("/visualizarTarefas")
-    public String visualizarTarefas(Model model) {
-        // Aqui você pode adicionar lógica para obter tarefas de um banco de dados ou serviço
-        model.addAttribute("tarefas", new String[]{"Tarefa 1", "Tarefa 2", "Tarefa 3"});
-        return "tarefas";  // Exibe a página de tarefas
-    }
-
     // Visualizar relatórios
     @GetMapping("/relatoriosparainiciante")
     public String visualizarRelatorios(Model model) {

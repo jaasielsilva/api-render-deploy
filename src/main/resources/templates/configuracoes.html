@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configurações</title>
+    <title>Configurações - Sistema</title>
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Resetting default browser styles */
+        /* Resetando os estilos padrões do navegador */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Body styling */
+        /* Estilo do body */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #f4f4f9;
+            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,111 +26,107 @@
             margin: 0;
         }
 
-        /* Box styling for the form */
-        .login-box {
+        /* Contêiner principal */
+        .admin-container {
             width: 100%;
-            max-width: 400px;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
             background-color: #fff;
-            padding: 40px;
             border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 20px;
         }
 
-        /* Heading style */
-        .login-box h2 {
+        /* Estilo do título */
+        h1 {
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 24px;
-            color: #333;
-        }
-
-        /* Textbox container for form fields */
-        .textbox {
+            font-size: 36px;
+            color: #2c3e50;
             margin-bottom: 20px;
         }
 
-        /* Input field styling */
-        .textbox input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-            margin-top: 5px;
-            transition: border-color 0.3s;
+        /* Estilo do menu */
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            justify-items: center;
+            margin-top: 30px;
         }
 
-        .textbox input:focus {
-            border-color: #3498db;
-            outline: none;
-        }
-
-        /* Button container */
-        .button-container {
+        .menu a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            padding: 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            gap: 10px;
+            background-color: #ecf0f1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            justify-content: center;
+            height: 80px; /* Altura fixa */
+            width: 100%; /* Largura automática com o mesmo tamanho para todos */
+            max-width: 250px; /* Limitar a largura máxima */
+            text-align: center; /* Centraliza o texto */
+            flex-shrink: 0; /* Impede que os links encolham */
         }
 
-        /* Save button styling */
-        button {
-            padding: 10px 20px;
+        .menu a i {
+            font-size: 30px; /* Ícones ajustados */
+            margin-right: 10px;
+        }
+
+        .menu a:hover {
             background-color: #3498db;
             color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%;
         }
 
-        button:hover {
-            background-color: #2980b9;
-        }
-
-        /* Styling for "Back to Menu" link */
-        .back-to-menu {
-            display: block;
+        /* Footer */
+        .footer {
             text-align: center;
-            margin-top: 15px;
+            margin-top: 50px;
+            font-size: 16px;
+            color: #7f8c8d;
+        }
+
+        .footer a {
             color: #3498db;
             text-decoration: none;
         }
 
-        .back-to-menu:hover {
+        .footer a:hover {
             text-decoration: underline;
         }
 
-        /* Responsive design for smaller screens */
-        @media (max-width: 480px) {
-            .login-box {
-                padding: 30px;
-                width: 90%;
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .menu {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="login-box">
-        <h2>Configurações do Funcionário</h2>
-        <form action="/salvarConfiguracoes" method="post">
-            <div class="textbox">
-                <label for="email">Alterar e-mail:</label>
-                <input type="email" id="email" name="email" required><br>
-            </div>
-
-            <div class="textbox">
-                <label for="senha">Alterar senha:</label>
-                <input type="password" id="senha" name="senha" required><br>
-            </div>
-
-            <div class="button-container">
-                <button type="submit">Salvar Alterações</button>
-            </div>
-        </form>
-        <a href="/relatorios" class="back-to-menu">Voltar ao Menu</a>
+    <div class="admin-container">
+        <h1>Configurações</h1>
+        <div class="menu">
+            <a href="/alterar-email"><i class="fas fa-envelope"></i> Alterar E-mail</a>
+            <a href="/alterar-senha"><i class="fas fa-key"></i> Alterar Senha</a>
+            <a href="/notificacoes"><i class="fas fa-bell"></i> Notificações</a>
+            <a href="/preferencias"><i class="fas fa-cogs"></i> Preferências</a>
+            <a href="/privacidade"><i class="fas fa-shield-alt"></i> Configurações de Privacidade</a>
+            <a href="/seguranca"><i class="fas fa-lock"></i> Configurações de Segurança</a>
+            <a href="/ajuda"><i class="fas fa-question-circle"></i> Ajuda</a>
+            <a href="/sair"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 Sistema de Configurações. Todos os direitos reservados.</p>
+            <p><a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
+        </div>
     </div>
 </body>
 </html>
