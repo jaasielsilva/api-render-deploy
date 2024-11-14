@@ -14,9 +14,8 @@
 
         /* Body styling */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             background-color: #f4f4f9;
-            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,83 +23,89 @@
             margin: 0;
         }
 
-        /* Container for the login box */
-        .login-container {
+        /* Box styling for the form */
+        .login-box {
             width: 100%;
             max-width: 400px;
             background-color: #fff;
             padding: 40px;
             border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        /* Title styling */
+        /* Heading style */
         .login-box h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #333;
         }
 
-        /* Textbox styling */
+        /* Textbox container for form fields */
         .textbox {
             margin-bottom: 20px;
         }
 
-        .textbox label {
-            display: block;
-            font-size: 16px;
-            color: #7f8c8d;
-            margin-bottom: 8px;
-        }
-
-        .textbox input,
-        .textbox select {
+        /* Input field styling */
+        .textbox input {
             width: 100%;
             padding: 10px;
-            font-size: 16px;
             border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-top: 5px;
+            transition: border-color 0.3s;
         }
 
-        .textbox input:focus,
-        .textbox select:focus {
+        .textbox input:focus {
             border-color: #3498db;
             outline: none;
         }
 
-        /* Button container and button styling */
+        /* Button container */
         .button-container {
-            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
         }
 
-        .button-container button {
-            width: 100%;
-            padding: 12px;
+        /* Save button styling */
+        button {
+            padding: 10px 20px;
             background-color: #3498db;
             color: white;
-            font-size: 16px;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
+            font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s;
+            width: 100%;
         }
 
-        .button-container button:hover {
+        button:hover {
             background-color: #2980b9;
         }
 
-        /* Success message styling */
-        p {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #2ecc71;
+        /* Styling for "Back to Menu" link */
+        .back-to-menu {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #3498db;
+            text-decoration: none;
         }
 
-        /* Error message styling (if needed) */
-        .error-message {
-            color: red;
+        .back-to-menu:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 480px) {
+            .login-box {
+                padding: 30px;
+                width: 90%;
+            }
         }
     </style>
 </head>
@@ -128,8 +133,11 @@
                 <div class="button-container">
                     <button type="submit">Cadastrar</button>
                 </div>
+                
             </form>
+            <a href="/relatorios" class="back-to-menu">Voltar ao Menu</a>
         </div>
+        
     </div>
 
     <!-- Mensagem de sucesso (aparece após um cadastro bem-sucedido) -->
