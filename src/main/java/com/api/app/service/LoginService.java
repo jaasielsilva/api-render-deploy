@@ -15,6 +15,8 @@ public class LoginService {
         User user = userRepository.findByUsername(username);
         if (user != null) {
             if (user.getPassword().equals(password)) {
+                // Se a senha estiver correta, atualizar o último acesso
+                userRepository.updateLastAccess(user.getId());                
                 return true; // Se a senha for correta
             } else {
                 System.out.println("Senha incorreta para o usuário: " + username);

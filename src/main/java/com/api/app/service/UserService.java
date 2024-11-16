@@ -38,4 +38,32 @@ public class UserService {
     public List<User> getNewUsersSince(LocalDateTime date) {
         return userRepository.findByCreatedAtAfter(date); // Retorna lista de usuários após a data informada
     }
+    // Método para buscar o usuário pelo nome
+    public User buscarPorUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    // Método para atualizar o último acesso
+    public void updateLastAccess(Long userId) {
+        userRepository.updateLastAccess(userId);  // Chama o método no repositório para atualizar no banco de dados
+    }
+
+    // Método para obter o último acesso de um usuário
+    public LocalDateTime getLastAccess(Long userId) {
+        User user = userRepository.findById(userId).orElse(null);  // Procura o usuário no banco de dados
+        if (user != null) {
+            return user.getUltimoAcesso();  // Aqui usamos 'getUltimoAcesso' para acessar o campo correto
+        }
+        return null;
+    }
+     // Método para obter a última ação de um usuário
+     public LocalDateTime getLastAction(Long userId) {
+        
+  
+        User user = userRepository.findById(userId).orElse(null);  // Procura o usuário no banco de dados
+                if (user != null) {
+                    return user.getUltimaAcao();  // Retorna o campo 'ultimaAcao' do usuário
+                }
+                return null;  // Caso o usuário não seja encontrado, retorna null
+            }
 }
