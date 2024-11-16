@@ -56,14 +56,8 @@ public class UserService {
         }
         return null;
     }
-     // Método para obter a última ação de um usuário
-     public LocalDateTime getLastAction(Long userId) {
-        
-  
-        User user = userRepository.findById(userId).orElse(null);  // Procura o usuário no banco de dados
-                if (user != null) {
-                    return user.getUltimaAcao();  // Retorna o campo 'ultimaAcao' do usuário
-                }
-                return null;  // Caso o usuário não seja encontrado, retorna null
-            }
+    
+    public List<User> listarTodos() {
+        return userRepository.findAll();
+    }
 }

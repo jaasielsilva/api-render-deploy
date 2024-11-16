@@ -14,6 +14,7 @@ import com.api.app.repository.UserRepository;
 import com.api.app.service.StatusService;
 import com.api.app.service.UserService;
 
+
 @Controller
 public class UserController {
 
@@ -123,5 +124,16 @@ public class UserController {
         return "verificacao_usuario"; // Retorna à página de verificação se não encontrar o usuário
         }
     }
+    @GetMapping("/lista-usuarios")
+    public String mostrarListaUsuarios() {
+        return "lista-usuarios";
+    }
 
+    // Método para retornar os usuários no formato JSON
+    @GetMapping("/api/usuarios")
+    @ResponseBody
+    public List<User> listarUsuarios() {
+        return userService.listarTodos(); // Retorna a lista de usuários
+    }
+    
 }
