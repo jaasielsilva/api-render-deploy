@@ -30,5 +30,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Transactional
     @Query("UPDATE User u SET u.ultimoAcesso = CURRENT_TIMESTAMP WHERE u.id = :userId")
     void updateLastAccess(Long userId);
-
+    
 }

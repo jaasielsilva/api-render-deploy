@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -124,16 +125,20 @@ public class UserController {
         return "verificacao_usuario"; // Retorna à página de verificação se não encontrar o usuário
         }
     }
+
+    
     @GetMapping("/lista-usuarios")
-    public String mostrarListaUsuarios() {
-        return "lista-usuarios";
+    public String mostrarListaUsuarios(Model model) {
+        model.addAttribute(
+        model.addAttribute("       usuarios", userService.findAll()));   
+    return "lista-usuarios";
     }
 
     // Método para retornar os usuários no formato JSON
-    @GetMapping("/api/usuarios")
-    @ResponseBody
-    public List<User> listarUsuarios() {
-        return userService.listarTodos(); // Retorna a lista de usuários
+    @GetMapping("/usuarios")
+    public ResponseEntity<List<User>> findAll(){
+        List<User> list = userService.findAll();
+        return ResponseEntity.ok().body(list);
     }
     
 }

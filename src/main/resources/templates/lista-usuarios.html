@@ -188,5 +188,46 @@
         </div>
     </div>
 
+    <script>
+        // Função para buscar usuários via API e preencher a tabela
+        async function carregarUsuarios() {
+            try {
+                const response = await fetch('/usuarios'); // Chama o endpoint da API
+                const usuarios = await response.json(); // Obtém os dados no formato JSON
+
+                const tabela = document.getElementById('usuarios-table-body');
+                tabela.innerHTML = ''; // Limpa a tabela antes de preencher
+
+                usuarios.forEach(usuario => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${usuario.id}</td>
+                        <td>${usuario.nome}</td>
+                        <td>${usuario.email}</td>
+                        <td>${usuario.status}</td>
+                        <td>
+                            <button onclick="editarUsuario(${usuario.id})">Editar</button>
+                            <button onclick="deletarUsuario(${usuario.id})">Deletar</button>
+                        </td>
+                    `;
+                    tabela.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar usuários:', error);
+            }
+        }
+
+        // Funções de exemplo para editar e deletar
+        function editarUsuario(id) {
+            alert(`Editar usuário com ID: ${id}`);
+        }
+
+        function deletarUsuario(id) {
+            alert(`Deletar usuário com ID: ${id}`);
+        }
+
+        // Carrega os usuários quando a página é carregada
+        document.addEventListener('DOMContentLoaded', carregarUsuarios);
+    </script>
 </body>
 </html>
