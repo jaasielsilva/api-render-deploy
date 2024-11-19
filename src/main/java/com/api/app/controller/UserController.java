@@ -1,5 +1,6 @@
 package com.api.app.controller;
 
+import java.security.Permission;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
@@ -10,7 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import com.api.app.model.RolePermission;
 import com.api.app.model.User;
+import com.api.app.repository.RolePermissionRepository;
 import com.api.app.repository.UserRepository;
 import com.api.app.service.StatusService;
 import com.api.app.service.UserService;
@@ -27,6 +31,9 @@ public class UserController {
 
     @Autowired
     private StatusService statusService;
+    
+     @Autowired
+    private RolePermissionRepository rolePermissionRepository;
 
     // Mapeia a URL '/Usuario' para a página de cadastro de usuários
     @GetMapping("/Usuarios")
@@ -129,16 +136,29 @@ public class UserController {
     
     @GetMapping("/lista-usuarios")
     public String mostrarListaUsuarios(Model model) {
-        model.addAttribute(
-        model.addAttribute("       usuarios", userService.findAll()));   
+        model.addAttribute("usuarios", userService.findAll()); // Corrigido para apenas uma chamada
     return "lista-usuarios";
     }
 
+
     // Método para retornar os usuários no formato JSON
-    @GetMapping("/usuarios")
+    @GetMapping("/api/usuarios")
     public ResponseEntity<List<User>> findAll(){
         List<User> list = userService.findAll();
         return ResponseEntity.ok().body(list);
     }
-    
+
+    @GetMapping("/gerenciar-permissoes")  // Certifique-se de que a URL é /gerenciar-permissoes
+    public String gerenciarPermissoes(Model model) {
+        // Carregar todos os usuários e permissões do banco de dados
+        List<User> usuarios = userRepository.findAll();  
+        List<RolePermission> permissoes = rolePermissionRepository.findAll();  
+
+        // Passar os dados para o template (usando atributos no modelo)
+        model.addAttribute("usuarios", usuarios);
+        model.addAttribute("permissoes", permissoes);
+
+        // Retornar o nome do arquivo HTML (gerenciar-permissoes.html)
+        return "gerenciar-permissoes";
+    }
 }
