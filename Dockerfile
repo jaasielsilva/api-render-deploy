@@ -1,11 +1,11 @@
-# Use uma imagem base com Java
-FROM openjdk:21-jdk-slim
-
-# Define o diretório de trabalho no contêiner
+# Etapa de Build
+FROM maven:3.8.6-amazoncorretto-17 as build
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copia o arquivo JAR do projeto para o contêiner
-COPY target/app-0.0.1-SNAPSHOT.jar app.jar
-
-# Comando para rodar a aplicação
+# Etapa de Produção
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /app/target/*.jar ./app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
