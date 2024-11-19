@@ -132,14 +132,12 @@ public class UserController {
         return "verificacao_usuario"; // Retorna à página de verificação se não encontrar o usuário
         }
     }
-
-    
+ 
     @GetMapping("/lista-usuarios")
     public String mostrarListaUsuarios(Model model) {
         model.addAttribute("usuarios", userService.findAll()); // Corrigido para apenas uma chamada
     return "lista-usuarios";
     }
-
 
     // Método para retornar os usuários no formato JSON
     @GetMapping("/api/usuarios")
